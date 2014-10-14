@@ -1,0 +1,13 @@
+- Loading gif icon for the LastDraw loading - DONE
+- Setup quebec - DONE
+- Billboard controller - handles phrases of lotto649 and quebec49 - DONE
+3- Clean up comments - DONE
+5- Clean up - IDs and Classes not used anymore - DONE
+4- Clean up - break up sub-views in includes, as lastDraw - DONE as Directives
+6- Clean up - optimize function, modular and smallers - DONE
+
+- Fix Menu Langs and arrows
+1- Provinces - set a button to change province beside Extra
+2- Delete all numbers, delete also Extra and Guaranteed (I am not sure yet)
+
+- Setup ontario49

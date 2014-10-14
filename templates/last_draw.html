@@ -1,0 +1,10 @@
+<div ng-controlller="LastDrawController" class="row">
+    <h2>{{lastDrawTitle}}<span>{{sortTitle}}</span></h2>
+    <p>{{dateLastDraw}}</p>
+    <ul>
+        <li ng-repeat="lastDrawNumber in lastDraw">{{lastDrawNumber}}</li>
+        <li class="bonus">{{bonusLastDraw}}</li>
+    </ul>
+    <p class="no-marginbottom">{{extraLastDrawTitle}}<span>{{extraLastDraw}}</span></p>
+    <p ng-show="sort == 'lotto649'" class="no-marginbottom">{{guaranteedLastDrawTitle}}<span>{{guaranteedLastDraw}}</span></p>
+</div>
