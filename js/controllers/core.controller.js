@@ -70,7 +70,7 @@ define([
 
                     date = new Date(),
                     day = date.getDate().toString().length == 1 ? '0' + date.getDate().toString() : date.getDate(),
-                    month = date.getMonth().toString().length == 1 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
+                    month = date.getMonth() !== 9 && date.getMonth().toString().length == 1 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
                     dataformated = date.getFullYear() +''+ month +''+ day;
 
                 if(typeof localStorage['lastDraw_' + sort] !== 'undefined' && typeof localStorage['shortdateLastDraw_' + sort] !== 'undefined') {
