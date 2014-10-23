@@ -77,7 +77,10 @@ if(typeof localStorage.lang === 'undefined') {
 } else {
     require(['en'], function(en) {});
 }
-/* end of I18n files */
+
+
+/* All common modules */
+//require(['angular', 'controllers/test.module']);
 
 require([
     'angular',
@@ -91,6 +94,7 @@ require([
     translateApp.i18n.translate();
 
     angular.element().ready(function() {
-        angular.resumeBootstrap([mlcApp['name']]);
+        //angular.resumeBootstrap([mlcApp['name']]);
+        angular.bootstrap(document, ['mlcApp']);
     });
 });

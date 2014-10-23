@@ -151,7 +151,10 @@ define([
 
                             // Compare everything again
                             $scope.compare();
-                            $scope.compareExtra();
+                            if(!_.isEmpty($scope.myExtra)) {
+                                $scope.compareExtra();
+                            }
+
                             if($scope.sort === 'lotto649') {
                                 $scope.compareGuaranteed();
                             }
