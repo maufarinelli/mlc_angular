@@ -27,6 +27,7 @@ module.exports = function(config) {
         {pattern: 'js/controllers/core.controller.js', included: false},
         {pattern: 'js/controllers/lottery649.controller.js', included: false},
         {pattern: 'js/controllers/actions/*.js', included: false},
+        {pattern: 'js/Add_Extra/*.js', included: false},
 
         {pattern: 'test/unit/controllersSpec.js', included: false},
         'test/test-main.js'

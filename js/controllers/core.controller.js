@@ -1,14 +1,18 @@
 define([
+    'addExtra',
+    'Add_Extra/addextra.controller',
+    'Add_Extra/addextra.directive',
+
     'mlcApp',
     'controllers/actions/lastdraw.controller',
     'controllers/actions/mynumbers.controller',
     'controllers/actions/extra.controller',
     'controllers/actions/guaranteed.controller',
     'controllers/actions/addnumbers.controller',
-    'controllers/actions/addextra.controller',
     'controllers/actions/addguaranteed.controller',
     'controllers/actions/billboard.controller',
     ], function(
+        addExtra,
         mlcApp
     ) {
         return mlcApp.controller('Core649Controller', ['$scope', '$rootScope', '$controller', function($scope, $rootScope, $controller) {

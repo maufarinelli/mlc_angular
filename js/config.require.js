@@ -80,7 +80,7 @@ if(typeof localStorage.lang === 'undefined') {
 
 
 /* All common modules */
-//require(['angular', 'controllers/test.module']);
+require(['angular', 'Add_Extra/addextra.module']);
 
 require([
     'angular',

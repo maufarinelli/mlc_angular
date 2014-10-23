@@ -18,6 +18,7 @@ requirejs.config({
         angular: 'external/angular.min',
         angularRoute: 'external/angular-route.min',
         angularMocks: 'external/angular-mocks',
+        addExtra: 'Add_Extra/addextra.module',
         mlcApp: 'mlc.app',
 
         translation: 'translation',
@@ -43,6 +44,17 @@ requirejs.config({
         },
         'translation': {
             exports: 'translation'
+        },
+        'addExtra': {
+            deps: [
+                'lodash',
+                'jQuery',
+                'angular',
+                'angularRoute',
+                'translation',
+                'general'
+            ],
+            exports: 'addExtra'
         },
         'mlcApp': {
             deps: [

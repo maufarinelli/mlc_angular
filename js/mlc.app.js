@@ -2,9 +2,10 @@
 
 define('mlcApp', [
     'angular',
-    'angularRoute'
+    'angularRoute',
+    'addExtra'
     ],
     function(angular) {
-        return angular.module('mlcApp', ['ngRoute']);
+        return angular.module('mlcApp', ['ngRoute', 'addExtra']);
     }
 );

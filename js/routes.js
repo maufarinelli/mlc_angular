@@ -1,7 +1,6 @@
 'use strict';
 
-define(
-    [
+define([
         'angular',
         'mlcApp',
         'controllers/lottery649.controller',
