@@ -19,6 +19,8 @@ requirejs.config({
         angularRoute: 'external/angular-route.min',
         angularMocks: 'external/angular-mocks',
         addExtra: 'Add_Extra/addextra.module',
+        addGuaranteed: 'Add_Guaranteed/addguaranteed.module',
+        addNumbers: 'Add_Numbers/addnumbers.module',
         mlcApp: 'mlc.app',
 
         translation: 'translation',

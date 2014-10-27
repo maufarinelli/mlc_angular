@@ -3,9 +3,16 @@
 define('mlcApp', [
     'angular',
     'angularRoute',
-    'addExtra'
+    'addExtra',
+    'addGuaranteed',
+    'addNumbers'
     ],
     function(angular) {
-        return angular.module('mlcApp', ['ngRoute', 'addExtra']);
+        return angular.module('mlcApp', [
+            'ngRoute',
+            'addExtra',
+            'addGuaranteed',
+            'addNumbers'
+        ]);
     }
 );

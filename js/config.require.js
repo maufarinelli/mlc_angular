@@ -78,9 +78,10 @@ if(typeof localStorage.lang === 'undefined') {
     require(['en'], function(en) {});
 }
 
-
 /* All common modules */
 require(['angular', 'Add_Extra/addextra.module']);
+require(['angular', 'Add_Guaranteed/addguaranteed.module']);
+require(['angular', 'Add_Numbers/addnumbers.module']);
 
 require([
     'angular',
