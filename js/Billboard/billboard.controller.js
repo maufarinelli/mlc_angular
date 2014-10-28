@@ -1,10 +1,10 @@
 define([
-        'mlcApp'
+        'billboard'
     ],
     function(
-        mlcApp
+        billboard
     ) {
-        return mlcApp.controller('BillboardController', function($scope) {
+        return billboard.controller('BillboardController', function($scope) {
             // Phrase for myNumbers, Extra and Guaranteed prize
             $scope.phrasesMyNumber = [];
             $scope.phraseExtra = {};
@@ -161,12 +161,6 @@ define([
                         phrase: translateApp.i18n.i18nTranslated[$scope.sort + '_phrases'].guaranteed
                     };
                 }
-            }
-        }).directive('billboardDirective', function() {
-            return {
-                restrict: 'EA',
-                templateUrl: 'templates/billboard.html',
-                controller: 'BillboardController'
             }
         });
     }

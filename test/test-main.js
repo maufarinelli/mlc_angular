@@ -18,9 +18,16 @@ requirejs.config({
         angular: 'external/angular.min',
         angularRoute: 'external/angular-route.min',
         angularMocks: 'external/angular-mocks',
+
         addExtra: 'Add_Extra/addextra.module',
         addGuaranteed: 'Add_Guaranteed/addguaranteed.module',
         addNumbers: 'Add_Numbers/addnumbers.module',
+        billboard: 'Billboard/billboard.module',
+        extra: 'Extra/extra.module',
+        guaranteed: 'Guaranteed/guaranteed.module',
+        lastdraw: 'Last_Draw/lastdraw.module',
+        myNumbers: 'My_Numbers/mynumbers.module',
+
         mlcApp: 'mlc.app',
 
         translation: 'translation',
@@ -46,17 +53,6 @@ requirejs.config({
         },
         'translation': {
             exports: 'translation'
-        },
-        'addExtra': {
-            deps: [
-                'lodash',
-                'jQuery',
-                'angular',
-                'angularRoute',
-                'translation',
-                'general'
-            ],
-            exports: 'addExtra'
         },
         'mlcApp': {
             deps: [

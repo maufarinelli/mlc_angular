@@ -3,8 +3,8 @@
 define([
         'angular',
         'mlcApp',
-        'controllers/lottery649.controller',
-        'controllers/quebec49.controller'
+        'Core/lottery649.controller',
+        'Core/quebec49.controller'
     ],
     function(angular, mlcApp) {
 

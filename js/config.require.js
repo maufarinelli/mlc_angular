@@ -82,13 +82,18 @@ if(typeof localStorage.lang === 'undefined') {
 require(['angular', 'Add_Extra/addextra.module']);
 require(['angular', 'Add_Guaranteed/addguaranteed.module']);
 require(['angular', 'Add_Numbers/addnumbers.module']);
+require(['angular', 'Billboard/billboard.module']);
+require(['angular', 'Extra/extra.module']);
+require(['angular', 'Guaranteed/guaranteed.module']);
+require(['angular', 'Last_Draw/lastdraw.module']);
+require(['angular', 'My_Numbers/mynumbers.module']);
 
 require([
     'angular',
     'mlcApp',
     'translation',
     'routes',
-    'controllers/actions/menu.controller'
+    'Menu/menu.controller'
 ], function(angular, mlcApp, translation, routes) {
     var $html = angular.element(document.getElementsByTagName('html')[0]);
 
