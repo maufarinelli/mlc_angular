@@ -36,7 +36,7 @@ define([
         });
 
         describe('Lottery649Controller', function() {
-            var $scope = null;
+            var scope = null;
             var ctrl = null;
 
             beforeEach(module('mlcApp'));
@@ -88,26 +88,47 @@ define([
             });
         });
 
-        describe('', function() {
-            var $scope = null;
-            var ctrl = null;
+        describe('AddExtraController', function() {
+            var scope = null,
+                ctrl = null;
+                //_extraValidation = null;
 
-            beforeEach(module('mlcApp'));
+            beforeEach(module('addExtra'));
 
             beforeEach(inject(function($controller, $rootScope) {
                 scope = $rootScope.$new();
-                ctrl = $controller('Core649Controller', {
+                /*_extraValidation = function() {
+                    return scope.rawMyExtra.search(/^\d{7}$/) === 0;
+                };*/
+                ctrl = $controller('AddExtraController', {
                     $scope: scope
                 });
-                scope.getLastDraw = $scope.getLastDraw;
-
-                spyOn(scope, 'getLastDraw');
-                scope.getLastDraw();
             }));
 
-            it('getLastDraw method should be called at the beginning of the program', function() {
-                expect(scope.getLastDraw).toHaveBeenCalled();
+            // Tests AddExtraController
+            it('isInputExtraActivated should be changed to true', function() {
+                scope.isInputExtraActivated = false;
+                scope.toggleInputExtra();
+
+                expect(scope.isInputExtraActivated).toBe(true);
             });
+
+            it('isInputExtraActivated should be changed to false', function() {
+                scope.isInputExtraActivated = true;
+                scope.toggleInputExtra();
+
+                expect(scope.isInputExtraActivated).toBe(false);
+            });
+
+            /*it('_extraValidation function should return false', function() {
+                scope.rawMyExtra = '';
+                expect(_extraValidation()).toBe(false);
+            });
+
+            it('_extraValidation function should return true', function() {
+                scope.rawMyExtra = '1111111';
+                expect(_extraValidation()).toBe(true);
+            });*/
 
         });
     }
