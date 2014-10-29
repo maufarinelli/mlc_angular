@@ -1,12 +1,13 @@
 'use strict';
 
 define([
-    'addExtra'
+    'addExtra',
+    'Add_Extra/addextra.services'
     ],
     function(
         addExtra
     ) {
-        return addExtra.controller('AddExtraController', ['$scope', function($scope) {
+        return addExtra.controller('AddExtraController', ['$scope', 'addExtraServices', function($scope, addExtraServices) {
             // Flags
             $scope.isInputExtraActivated = false;
             $scope.isExtraValid = true;
@@ -37,17 +38,17 @@ define([
              * Saves the extra number
              */
             $scope.saveExtra = function() {
-                var validate = _extraValidation();
+                var validate = addExtraServices._extraValidation($scope.rawMyExtra);
 
                 if(validate) {
                     // If there is a extra number saved, we show a confirm message
                     if(localStorage['myExtra_' + $scope.sort]) {
                         if(window.confirm(translateApp.i18n.i18nTranslated.confirm_override_extra)) {
-                            _actionAddNewExtra();
+                            $scope._actionAddNewExtra();
                         }
                     }
                     else {
-                        _actionAddNewExtra();
+                        $scope._actionAddNewExtra();
                     }
                     $scope.isInputExtraActivated = false;
                     $scope.buttonAddExtra = translateApp.i18n.i18nTranslated.button_add_extra;
@@ -58,41 +59,17 @@ define([
             };
 
             /**
-             * Validates if Extra has 7 exactly numbers
-             * @returns {boolean}
-             * @private
-             */
-            function _extraValidation() {
-                return $scope.rawMyExtra.search(/^\d{7}$/) === 0;
-            }
-
-            /**
-             * Formats a extra that is collected as a Number
-             * @returns {Array} - in a following format [{ n: 1, status: false },{ n: 2, status: false }, etc... ]
-             * @private
-             */
-            function _formatsExtra() {
-                var aExtra = $scope.rawMyExtra.toString().trim().split(''),
-                    oExtra = [];
-
-                for(var i = 0; i < aExtra.length; i++) {
-                    oExtra.push({n: parseInt(aExtra[i], 10), status: false});
-                }
-
-                return oExtra;
-            }
-
-            /**
              * Adds a new extra number
              * @private
              */
-            function _actionAddNewExtra() {
-                var formattedExtra = _formatsExtra();
+            $scope._actionAddNewExtra = function() {
+                var formattedExtra = addExtraServices._formatsExtra($scope.rawMyExtra);
 
                 $scope.isExtraValid = true;
                 $scope.addNewExtra(formattedExtra);
                 $scope.compareExtra();
-            }
+            };
+            
         }]);
     }
 );

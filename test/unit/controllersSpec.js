@@ -91,15 +91,13 @@ define([
         describe('AddExtraController', function() {
             var scope = null,
                 ctrl = null;
-                //_extraValidation = null;
 
             beforeEach(module('addExtra'));
 
             beforeEach(inject(function($controller, $rootScope) {
                 scope = $rootScope.$new();
-                /*_extraValidation = function() {
-                    return scope.rawMyExtra.search(/^\d{7}$/) === 0;
-                };*/
+                scope.addNewExtra = function() {};
+                scope.compareExtra = function() {};
                 ctrl = $controller('AddExtraController', {
                     $scope: scope
                 });
@@ -122,12 +120,44 @@ define([
 
             /*it('_extraValidation function should return false', function() {
                 scope.rawMyExtra = '';
-                expect(_extraValidation()).toBe(false);
+                expect(ctrl._extraValidation()).toBe(false);
             });
 
             it('_extraValidation function should return true', function() {
                 scope.rawMyExtra = '1111111';
-                expect(_extraValidation()).toBe(true);
+                expect(ctrl._extraValidation()).toBe(true);
+            });*/
+            
+            it('actionAddNewExtra should put isExtraValid to true', function() {
+                scope._actionAddNewExtra();
+                expect(scope.isExtraValid).toBe(true);
+            });
+
+            it('saveExtra with a valid extra should put isInputExtraActivated to false', function() {
+                scope.rawMyExtra = '1111111';
+                scope.saveExtra();
+
+                expect(scope.isInputExtraActivated).toBe(false);
+            });
+
+            it('saveExtra with a valid extra should put isInputExtraActivated to false', function() {
+                scope.rawMyExtra = '1111';
+                scope.saveExtra();
+
+                expect(scope.isExtraValid).toBe(false);
+            });
+
+            it('saveExtra with a valid extra should call _actionAddNewExtra()', function() {
+                spyOn(scope, '_actionAddNewExtra');
+
+                scope.rawMyExtra = '1111111';
+                scope.saveExtra();
+
+                expect(scope._actionAddNewExtra).toHaveBeenCalled();
+            });
+
+            /*it('', function() {
+
             });*/
 
         });
