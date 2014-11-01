@@ -19,18 +19,19 @@ define([
 
             /**
              * Formats a extra that is collected as a Number
+             * @param {Number} Extra number
              * @returns {Array} - in a following format [{ n: 1, status: false },{ n: 2, status: false }, etc... ]
              * @private
              */
             this._formatsExtra = function(value) {
-                var aExtra = value.toString().trim().split(''),
-                    oExtra = [];
+                var extraList = value.toString().trim().split(''),
+                    formattedExtraList = [];
 
-                for(var i = 0; i < aExtra.length; i++) {
-                    oExtra.push({n: parseInt(aExtra[i], 10), status: false});
+                for(var i = 0; i < extraList.length; i++) {
+                    formattedExtraList.push({n: parseInt(extraList[i], 10), status: false});
                 }
 
-                return oExtra;
+                return formattedExtraList;
             };
         });
     }

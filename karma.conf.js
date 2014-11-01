@@ -35,7 +35,7 @@ module.exports = function(config) {
         {pattern: 'js/My_Numbers/*.js', included: false},
         {pattern: 'js/Menu/*.js', included: false},
 
-        {pattern: 'test/unit/controllersSpec.js', included: false},
+        {pattern: 'test/unit/*.js', included: false},
         'test/test-main.js'
     ],
 

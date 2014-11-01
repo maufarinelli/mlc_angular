@@ -14,9 +14,20 @@
 
     <div add-numbers-directive></div>
 
-    <div add-extra-directive></div>
+    <div ng-controller="AddExtraController">
+        <div add-extra-directive 
+            button-add="{{buttonAddExtra}}" 
+            button-save="{{buttonSaveExtra}}" 
+            error-message="{{errorMessageExtra}}" 
+            is-activated="isInputExtraActivated" 
+            is-extra-valid="isExtraValid" 
+            save-extra="saveExtra()"
+            raw-my-extra="rawMyExtra">
+        </div>
+    </div>
 
     <div add-guaranteed-directive></div>
+
 
     <div billboard-directive></div>
 </div>

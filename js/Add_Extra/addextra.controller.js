@@ -21,20 +21,6 @@ define([
             $scope.rawMyExtra = '';
 
             /**
-             * Toggles the show/hide input extra
-             */
-            $scope.toggleInputExtra = function() {
-                if(!$scope.isInputExtraActivated) {
-                    $scope.isInputExtraActivated = true;
-                    $scope.buttonAddExtra = translateApp.i18n.i18nTranslated.button_hide_field;
-                }
-                else {
-                    $scope.isInputExtraActivated = false;
-                    $scope.buttonAddExtra = translateApp.i18n.i18nTranslated.button_add_extra;
-                }
-            };
-
-            /**
              * Saves the extra number
              */
             $scope.saveExtra = function() {
