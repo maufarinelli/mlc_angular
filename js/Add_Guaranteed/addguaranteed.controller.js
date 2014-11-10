@@ -1,12 +1,13 @@
 'use strict';
 
 define([
-        'addGuaranteed'
+        'addGuaranteed',
+        'Add_Guaranteed/addguaranteed.services'
     ],
     function(
         addGuaranteed
     ) {
-        return addGuaranteed.controller('AddGuaranteedController', function($scope) {
+        return addGuaranteed.controller('AddGuaranteedController', ['$scope', 'addGuaranteedServices', function($scope, addGuaranteedServices) {
             // Flags
             $scope.isInputGuaranteedActivated = false;
             $scope.isGuaranteedValid = true;
@@ -20,24 +21,10 @@ define([
             $scope.rawMyGuaranteed = '';
 
             /**
-             * Toggles the show/hide input guaranteed
-             */
-            $scope.toggleGuaranteedExtra = function() {
-                if(!$scope.isInputGuaranteedActivated) {
-                    $scope.isInputGuaranteedActivated = true;
-                    $scope.buttonAddGuaranteed = translateApp.i18n.i18nTranslated.button_hide_field;
-                }
-                else {
-                    $scope.isInputGuaranteedActivated = false;
-                    $scope.buttonAddGuaranteed = translateApp.i18n.i18nTranslated.button_add_guaranteed;
-                }
-            };
-
-            /**
              * Saves the Guaranteed prize number
              */
             $scope.saveGuaranteed = function() {
-                var validate = _extraValidation();
+                var validate = addGuaranteedServices.extraValidation($scope.rawMyGuaranteed);
 
                 if(validate) {
                     if(localStorage['myGuaranteedNumber_' + $scope.sort]) {
@@ -57,35 +44,17 @@ define([
             };
 
             /**
-             * Validates if GUaranteed number has exactly 8 numbers, hyphen, 2 numbers, as the following format: 00000000-00
-             * @returns {boolean}
-             * @private
-             */
-            function _extraValidation() {
-                return $scope.rawMyGuaranteed.search(/^\d{8}-\d{2}$/) === 0;
-            }
-
-            /**
-             * Formats a Guaranteed prize number that is collected as a String
-             * @returns {Object} - in a following format { n: 00000000-00, status: false }
-             * @private
-             */
-            function _formatsGuaranteed() {
-                return {n: $scope.rawMyGuaranteed.trim(), status: false};
-            }
-
-            /**
              * Adds a new guaranteed prize number
              * @private
              */
             function _actionAddNewGuaranteed() {
-                var oGuaranteed = _formatsGuaranteed();
+                var oGuaranteed = addGuaranteedServices.formatsGuaranteed($scope.rawMyGuaranteed);
 
                 $scope.isGuaranteedValid = true;
                 $scope.addNewGuaranteed(oGuaranteed);
                 $scope.compareGuaranteed();
             }
 
-        });
+        }]);
     }
 );

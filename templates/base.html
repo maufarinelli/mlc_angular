@@ -26,7 +26,18 @@
         </div>
     </div>
 
-    <div add-guaranteed-directive></div>
+    <div ng-controller="AddGuaranteedController">
+        <div add-guaranteed-directive
+             sort="{{sort}}"
+             button-add="{{buttonAddGuaranteed}}"
+             button-save="{{buttonSaveGuaranteed}}"
+             error-message="{{errorMessageGuaranteed}}"
+             is-activated="isInputGuaranteedActivated"
+             is-guaranteed-valid="isGuaranteedValid"
+             save-guaranteed="saveGuaranteed()"
+             raw-my-guaranteed="rawMyGuaranteed">
+        </div>
+    </div>
 
 
     <div billboard-directive></div>
