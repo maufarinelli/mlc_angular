@@ -26,6 +26,7 @@ module.exports = function(config) {
         {pattern: 'js/general.js', included: false},
         {pattern: 'js/Core/*.js', included: false},
         {pattern: 'js/Add_Extra/*.js', included: false},
+        {pattern: 'js/Add_Extra/*.html', included: false},
         {pattern: 'js/Add_Guaranteed/*.js', included: false},
         {pattern: 'js/Add_Numbers/*.js', included: false},
         {pattern: 'js/Billboard/*.js', included: false},
@@ -36,6 +37,7 @@ module.exports = function(config) {
         {pattern: 'js/Menu/*.js', included: false},
 
         {pattern: 'test/unit/*.js', included: false},
+        {pattern: 'test/unit/**/*.js', included: false},
         'test/test-main.js'
     ],
 
@@ -49,6 +51,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        'js/Add_Extra/*.html': ['ng-html2js']// generate js files from html templates
     },
 
 
@@ -82,6 +85,19 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+
+    /* ngHtml2JsPreprocessor: {
+        'moduleName': 'foo'
+
+        // Function that transforms the path to look exactly like
+        // you have it in templateUrl in your Angular code
+        //
+        // Mine looks like this
+        cacheIdFromPath: function(filepath) {
+            //return filepath.match(/\/js\/Add_Extra\/*\.html/);
+            return ''
+        }*
+    },*/
   });
 };

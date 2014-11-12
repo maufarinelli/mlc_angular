@@ -1,8 +1,7 @@
 'use strict';
 
 define([
-    'addExtra',
-    'Add_Extra/addextra.controller'
+    'addExtra'
     ],
     function(
         addExtra
@@ -12,7 +11,7 @@ define([
                 restrict: 'EA',
                 transclude: true,
                 scope: {
-                    buttonAdd: '@',
+                    buttonAdd: '=',
                     buttonSave: '@',
                     errorMessage: '@',
                     isInputExtraActivated: '=isActivated',

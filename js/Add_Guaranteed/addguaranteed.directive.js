@@ -11,7 +11,7 @@ define([
                 restrict: 'EA',
                 scope: {
                     sort: '@',
-                    buttonAdd: '@',
+                    buttonAdd: '=',
                     buttonSave: '@',
                     errorMessage: '@',
                     isInputGuaranteedActivated: '=isActivated',
