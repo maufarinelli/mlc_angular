@@ -26,7 +26,7 @@ module.exports = function(config) {
         {pattern: 'js/general.js', included: false},
         {pattern: 'js/Core/*.js', included: false},
         {pattern: 'js/Add_Extra/*.js', included: false},
-        {pattern: 'js/Add_Extra/*.html', included: false},
+        {pattern: 'js/Add_Extra/add_extra.html', included: false},
         {pattern: 'js/Add_Guaranteed/*.js', included: false},
         {pattern: 'js/Add_Numbers/*.js', included: false},
         {pattern: 'js/Billboard/*.js', included: false},
@@ -71,7 +71,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -87,17 +87,17 @@ module.exports = function(config) {
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
 
-    /* ngHtml2JsPreprocessor: {
-        'moduleName': 'foo'
+    ngHtml2JsPreprocessor: {
+       'moduleName': 'templates'
 
         // Function that transforms the path to look exactly like
         // you have it in templateUrl in your Angular code
         //
         // Mine looks like this
-        cacheIdFromPath: function(filepath) {
+        /*cacheIdFromPath: function(filepath) {
             //return filepath.match(/\/js\/Add_Extra\/*\.html/);
             return ''
-        }*
-    },*/
+        }*/
+    }
   });
 };

@@ -35,6 +35,7 @@ requirejs.config({
         fr: 'locales/fr'
     },
     shim: {
+        'Add_Extra/add_extra.html': {deps: ['angular']},
         // Libraries
         'jQuery': {
             exports: '$'
@@ -77,6 +78,9 @@ requirejs.config({
         }
     },
 
+    priority: [
+        'angular'
+    ],
     // ask Require.js to load these files (all our tests)
     deps: tests,
 

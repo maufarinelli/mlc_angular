@@ -4,52 +4,36 @@ define([
         'angular',
         'angularMocks',
         'addExtra',
-        'Add_Extra/addextra.directive'
+        'Add_Extra/add_extra.html'
     ],
     function() {
         describe('addExtraDirective', function() {
             var scope = null,
                 compile = null,
-                extraDirective = '',
-                extraCache = '',
                 rootScope = null,
-                templateCache = null;
+                extraDirective = '';
 
-            /*beforeEach(function() {
-                angular.mock.module('addExtra');
-            });
-            //beforeEach(module('foo'));
             beforeEach(function() {
-                module('addExtraDirective');
-            });*/
+                angular.mock.module('addExtra');
+                module('templates');
+                inject(function($rootScope, $compile) {
+                    scope = $rootScope.$new();
+                    rootScope = $rootScope;
 
-            beforeEach(inject(function($rootScope, $compile, $templateCache) {
-                scope = $rootScope.$new();
-                rootScope = $rootScope;
-                templateCache = $templateCache;
-                var t = templateCache.get('js/Add_Extra/add_extra.html.js');
-                console.log(t);
-                templateCache.put('<div add-extra-directive></div>', t);
+                    compile = $compile;
+                })
+            });
 
-                scope.isInputExtraActivated = false;
-                scope.buttonAdd = 'Add Extra';
-                scope.buttonSave = 'Save';
-                scope.isExtraValid = false;
-                scope.rawMyExtra = '';
+            describe('when an Add Extra button has been clicked', function() {
+                it('it should set isInputExtraActivated to true', function() {
+                    extraDirective = '<div add-extra-directive button-add="buttonAddExtra" button-save="{{buttonSaveExtra}}" error-message="{{errorMessageExtra}}" is-activated="isInputExtraActivated" is-extra-valid="isExtraValid" save-extra="saveExtra()" raw-my-extra="rawMyExtra"></div>';
+                    var element = compile(extraDirective)(scope);
+                    scope.$digest();
 
-                compile = $compile;
-            }));
-
-            it('toggleInputExtra should toggle input extra', function() {
-                extraDirective = angular.element('<div add-extra-directive></div>');
-                //extraCache = templateCache.put(js/Add_Extra/add_extra.html, 'Add_Extra/add_extra.html');
-                var element = compile(extraDirective)(scope);
-                scope.$digest();
-
-                console.log(element);
-                //element.find('button')[0].click();
-
-                //expect(element.scope().isInputExtraActivated).toBe(true);
+                    element.find('button')[0].click();
+                    //expect(element.isolateScope().isInputExtraActivated).toBe(true);
+                    expect(element[0].querySelector('.choose-extra').classList.contains('is-hidden')).toBe(false);
+                });
             });
         });
     }
