@@ -35,7 +35,6 @@ requirejs.config({
         fr: 'locales/fr'
     },
     shim: {
-        'Add_Extra/add_extra.html': {deps: ['angular']},
         // Libraries
         'jQuery': {
             exports: '$'

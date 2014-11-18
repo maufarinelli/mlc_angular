@@ -51,7 +51,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'js/Add_Extra/*.html': ['ng-html2js']// generate js files from html templates
+        'js/**/*.html': ['html2js']// generate js files from html templates
     },
 
 
@@ -85,9 +85,9 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: false
 
-    ngHtml2JsPreprocessor: {
+    /*ngHtml2JsPreprocessor: {
        'moduleName': 'templates'
 
         // Function that transforms the path to look exactly like
@@ -97,7 +97,7 @@ module.exports = function(config) {
         /*cacheIdFromPath: function(filepath) {
             //return filepath.match(/\/js\/Add_Extra\/*\.html/);
             return ''
-        }*/
-    }
+        }
+    }*/
   });
 };

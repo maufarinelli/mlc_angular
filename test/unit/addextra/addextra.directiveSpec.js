@@ -14,11 +14,14 @@ define([
                 extraDirective = '';
 
             beforeEach(function() {
+
                 angular.mock.module('addExtra');
-                module('templates');
-                inject(function($rootScope, $compile) {
+                //module('templates');
+                inject(function($rootScope, $compile, $templateCache) {
                     scope = $rootScope.$new();
                     rootScope = $rootScope;
+
+                    $templateCache.put('js/Add_Extra/add_extra.html', window.__html__['js/Add_Extra/add_extra.html']);
 
                     compile = $compile;
                 })
