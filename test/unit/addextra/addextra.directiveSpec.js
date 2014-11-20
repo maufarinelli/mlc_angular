@@ -10,32 +10,37 @@ define([
         describe('addExtraDirective', function() {
             var scope = null,
                 compile = null,
-                rootScope = null,
-                extraDirective = '';
+                extraDirective = '',
+                element = '';
 
             beforeEach(function() {
-
                 angular.mock.module('addExtra');
-                //module('templates');
                 inject(function($rootScope, $compile, $templateCache) {
                     scope = $rootScope.$new();
-                    rootScope = $rootScope;
-
                     $templateCache.put('js/Add_Extra/add_extra.html', window.__html__['js/Add_Extra/add_extra.html']);
-
                     compile = $compile;
                 })
             });
 
             describe('when an Add Extra button has been clicked', function() {
-                it('it should set isInputExtraActivated to true', function() {
+                beforeEach(function() {
                     extraDirective = '<div add-extra-directive button-add="buttonAddExtra" button-save="{{buttonSaveExtra}}" error-message="{{errorMessageExtra}}" is-activated="isInputExtraActivated" is-extra-valid="isExtraValid" save-extra="saveExtra()" raw-my-extra="rawMyExtra"></div>';
-                    var element = compile(extraDirective)(scope);
+                    element = compile(extraDirective)(scope);
                     scope.$digest();
+                });
 
+                it('it should set isInputExtraActivated to true', function() {
                     element.find('button')[0].click();
-                    //expect(element.isolateScope().isInputExtraActivated).toBe(true);
+                    expect(element.isolateScope().isInputExtraActivated).toBe(true);
+                });
+
+                it('it should show the element that contains the extra input and the save extra button', function() {
+                    element.find('button')[0].click();
                     expect(element[0].querySelector('.choose-extra').classList.contains('is-hidden')).toBe(false);
+                });
+
+                afterEach(function() {
+                    element.isolateScope().isInputExtraActivated = false;
                 });
             });
         });
