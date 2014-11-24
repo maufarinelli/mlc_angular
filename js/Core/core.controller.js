@@ -26,6 +26,10 @@ define([
     'lastdraw',
     'Last_Draw/lastdraw.controller',
 
+    'myNumbers',
+    'My_Numbers/mynumbers.controller',
+    'My_Numbers/mynumbers.directive',
+
     'mlcApp'
     ], function(
         mlcApp

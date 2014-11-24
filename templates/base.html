@@ -12,7 +12,19 @@
 
     <div my-guaranteed-directive></div>
 
-    <div add-numbers-directive></div>
+    <div ng-controller="AddNumbersController" class="row-addbutton">
+        <div add-numbers-directive
+            is-activate="isKeyboardActivated"
+            is-selected-exceeded="isSelectedNumbersExceeded"
+            buttons-selected-model="buttonsSelectedModel"
+            add-numbers-button="{{addNumbersButton}}"
+            delete-numbers-button="{{deleteAllNumbersButton}}"
+            save-numbers-button="{{saveNumbersButton}}"
+            error-message-numbers="{{errorMessageSetNumbers}}"
+            delele-all-numbers-set="deleleAllNumbersSet()"
+            save-numbers="saveNumbers()">
+        </div>
+    </div>
 
     <div ng-controller="AddExtraController">
         <div add-extra-directive 
@@ -38,7 +50,6 @@
              raw-my-guaranteed="rawMyGuaranteed">
         </div>
     </div>
-
 
     <div billboard-directive></div>
 </div>
