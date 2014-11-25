@@ -11,10 +11,6 @@ define([
             return {
                 restrict: 'EA',
                 scope: {
-                    addNumbersButton: '@',
-                    deleteAllNumbersButton: '@deleteNumbersButton',
-                    errorMessageSetNumbers: '@errorMessageNumbers',
-                    saveNumbersButton: '@',
                     isKeyboardActivated: '=isActivate',
                     isSelectedNumbersExceeded: '=isSelectedExceeded',
                     buttonsSelectedModel: '=',
@@ -23,7 +19,14 @@ define([
                 },
                 templateUrl: 'js/Add_Numbers/add_numbers.html',
                 link: function($scope, element, attrs) {
-                    $scope.buttonsChooseNumbers = buttonsChooseNumbersConstructor();
+                    // I18n texts for some UI items
+                    $scope.addNumbersButton = translateApp.i18n.i18nTranslated.button_add_numbers;
+                    $scope.deleteAllNumbersButton = translateApp.i18n.i18nTranslated.button_delete_all;
+                    $scope.saveNumbersButton = translateApp.i18n.i18nTranslated.button_save;
+                    $scope.errorMessageSetNumbers = translateApp.i18n.i18nTranslated.error_message_set_numbers;
+
+                    // Array containing all buttons' objects
+                    $scope.buttonsChooseNumbers = addNumbersServices.buttonsChooseNumbersConstructor();
 
                     // All selected number's buttons will be pushed on it
                     $scope.buttonsSelectedModel = [];
@@ -40,10 +43,7 @@ define([
                         // If clicked button was already selected, reset it
                         if(selectedStatus) {
                             addNumbersServices.resetAChooseNumberButton(button);
-
-                            _.remove($scope.buttonsSelectedModel, function(num){
-                                return num === parseInt(value, 10);
-                            });
+                            addNumbersServices.removeButtonFromModel($scope.buttonsSelectedModel, value);
                         }
                         else {
                             // Select a button
@@ -68,22 +68,6 @@ define([
                         }
                         $scope.isKeyboardActivated = !$scope.isKeyboardActivated;
                     };
-
-                    /**
-                     * Constructor for all choose numbers buttons
-                     */
-                    function buttonsChooseNumbersConstructor() {
-                        var buttonsChooseNumbers = [];
-
-                        for(var i = 1; i < 50; i++) {
-                            var button = {};
-                            button.text = i < 10 ? '0' + i : i;
-                            button.value = i;
-                            buttonsChooseNumbers.push(button);
-                        }
-
-                        return buttonsChooseNumbers;
-                    }
                 }
             }
         }]);
