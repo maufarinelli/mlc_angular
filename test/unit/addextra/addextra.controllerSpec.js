@@ -1,3 +1,5 @@
+'use strict';
+
 define([
     'angular',
     'angularMocks',
@@ -5,7 +7,6 @@ define([
     'Core/lottery649.controller'
     ],
     function() {
-
         describe('AddExtraController', function() {
             var scope = null,
                 ctrl = null,
