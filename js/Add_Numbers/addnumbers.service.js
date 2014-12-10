@@ -8,25 +8,6 @@ define([
             var that = this;
 
             /**
-             * DIRECTIVE
-             * Resets all choose numbers buttons
-             */
-            this.resetChooseNumbersButtons = function() {
-                $('.btn-choose-numbers').each(function(index, button) {
-                    that.resetAChooseNumberButton(button);
-                });
-            };
-
-            /**
-             * DIRECTIVE
-             * Resets a choose numbers button
-             */
-            this.resetAChooseNumberButton = function(button) {
-                angular.element(button).data('button-selected', false);
-                angular.element(button).removeClass('btn-success').addClass('btn-default');
-            };
-
-            /**
              * Checks if selected numbers exceeded maximum of 6
              */
             this.checkSelectedNumbersExceeded = function(buttonsSelected) {

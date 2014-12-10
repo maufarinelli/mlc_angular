@@ -9,8 +9,7 @@ define([
     function() {
         describe('AddNumbersController', function() {
             var scope = null,
-                ctrl = null,
-                addNumbersServices;
+                ctrl = null;
 
             beforeEach(module('addNumbers'));
 
@@ -18,8 +17,6 @@ define([
                 scope = $rootScope.$new();
                 scope.addNewNumbers = function() {};
                 scope.compare = function() {};
-
-                addNumbersServices = $injector.get('addNumbersServices');
 
                 ctrl = $controller('AddNumbersController', {
                     $scope: scope
@@ -42,7 +39,7 @@ define([
                 beforeEach(function() {
                     spyOn(scope, 'addNewNumbers');
                     spyOn(scope, 'compare');
-                    spyOn(addNumbersServices, 'resetChooseNumbersButtons');
+                    spyOn(scope, '$broadcast');
 
                     scope.buttonsSelectedModel = [1,2,3,4,5,6];
                     mockNewNumbersArray = [
@@ -64,8 +61,12 @@ define([
                     expect(scope.addNewNumbers).toHaveBeenCalledWith(mockNewNumbersArray);
                 });
 
-                it('it should call resetChooseNumbersButtons function', function() {
-                    expect(addNumbersServices.resetChooseNumbersButtons).toHaveBeenCalled();
+                it('it should $broadcast event', function() {
+                    expect(scope.$broadcast).toHaveBeenCalled();
+                });
+
+                it('it should $broadcast event called reset', function() {
+                    expect(scope.$broadcast).toHaveBeenCalledWith('reset');
                 });
 
                 it('it should reset the buttonsSelectedModel array', function() {

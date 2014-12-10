@@ -26,7 +26,8 @@ define([
                     $scope.addNewNumbers(newNumbersArray);
                     $scope.compare();
 
-                    addNumbersServices.resetChooseNumbersButtons();
+                    //$scope.resetChooseNumbersButtons();
+                    $scope.$broadcast('reset');
                     $scope.buttonsSelectedModel = [];
                 }
                 else {

@@ -13,7 +13,7 @@ require.config({
         jQuery: 'external/jquery-1.10.2.min',
         lodash: 'external/lodash',
         general: 'general',
-        angular: 'external/angular.min',
+        angular: '../bower_components/angular/angular',
         angularRoute: 'external/angular-route.min',
         mlcApp: 'mlc.app',
 

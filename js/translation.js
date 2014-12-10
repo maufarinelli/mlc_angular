@@ -1,3 +1,5 @@
+"use strict";
+
 /* Global translate app*/
 var translateApp = translateApp || {};
 
@@ -9,15 +11,12 @@ var translateApp = translateApp || {};
     translateApp.i18n.i18nTranslated = {};
 
     translateApp.i18n.construct = function(dict) {
-        "use strict";
-
         for( var i in dict ){
             if( dict.hasOwnProperty(i) ){
                 translateApp.i18n.i18nTranslated[i] = dict[i];
             }
         }
     };
-
 
     translateApp.i18n.translate = function() {
         $('[data-i18n]').each(function(idx, elem) {

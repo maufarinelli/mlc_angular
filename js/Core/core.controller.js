@@ -139,6 +139,39 @@ define([
                     type: 'GET',
                     success: function(data) {
                         var decoded = angular.fromJson(data);
+
+                        // Mocking the response until fix server side
+                        decoded = {
+                            "lotto649":{
+                                "Date": "Wednesday, Dec 10 2014",
+                                "Shortdate": "2014-12-10",
+                                "Bonus": "02",
+                                "Guaranteed": "60606060-45",
+                                "Extra": "1234567",
+                                "Encore":"0080185",
+                                "Number0": "01",
+                                "Number1": "10",
+                                "Number2": "13",
+                                "Number3": "25",
+                                "Number4": "26",
+                                "Number5": "45"
+                            },
+                            "quebec49":{
+                                "Date": "Wednesday, Dec 10 2014",
+                                "Shortdate": "2014-12-10",
+                                "Bonus": "02",
+                                "Guaranteed": null,
+                                "Extra": "1234567",
+                                "Encore":"0080185",
+                                "Number0": "01",
+                                "Number1": "10",
+                                "Number2": "13",
+                                "Number3": "25",
+                                "Number4": "26",
+                                "Number5": "45"
+                            }
+                        };
+
                         var sorted = decoded[sort];
 
                         // Pushing all 6 numbers inside lastdraw array

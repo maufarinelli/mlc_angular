@@ -16,6 +16,7 @@ define([
                     buttonsSelectedModel: '=',
                     deleleAllNumbersSet: '&',
                     saveNumbers: '&'
+
                 },
                 templateUrl: 'js/Add_Numbers/add_numbers.html',
                 link: function($scope, element, attrs) {
@@ -32,7 +33,7 @@ define([
                     $scope.buttonsSelectedModel = [];
 
                     /**
-                     * Saves a set of numbers
+                     * Selects or unselects a numbers
                      * {event} $event - The click event
                      */
                     $scope.selectedNumber = function($event) {
@@ -42,7 +43,7 @@ define([
 
                         // If clicked button was already selected, reset it
                         if(selectedStatus) {
-                            addNumbersServices.resetAChooseNumberButton(button);
+                            $scope.resetAChooseNumberButton(button);
                             addNumbersServices.removeButtonFromModel($scope.buttonsSelectedModel, value);
                         }
                         else {
@@ -68,6 +69,29 @@ define([
                         }
                         $scope.isKeyboardActivated = !$scope.isKeyboardActivated;
                     };
+
+                    /**
+                     * SCOPE OR PRIVATE?
+                     * Resets all choose numbers buttons
+                     */
+                    $scope.resetChooseNumbersButtons = function() {
+                        $('.btn-choose-numbers').each(function(index, button) {
+                            $scope.resetAChooseNumberButton(button);
+                        });
+                    };
+
+                    /**
+                     * SCOPE OR PRIVATE?
+                     * Resets a choose numbers button
+                     */
+                    $scope.resetAChooseNumberButton = function(button) {
+                        angular.element(button).data('button-selected', false);
+                        angular.element(button).removeClass('btn-success').addClass('btn-default');
+                    };
+
+                    $scope.$on('reset', function() {
+                        $scope.resetChooseNumbersButtons();
+                    });
                 }
             }
         }]);
