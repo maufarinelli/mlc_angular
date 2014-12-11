@@ -48,8 +48,8 @@ define([
 
             /**
              * Remove a button from the buttonSelectedModel Array
-             * @param buttonSelectedModel - the buttonSelectedModel Array
-             * @param buttonValue - the button value of the button to be removed
+             * @param {Array of Numbers}  buttonSelectedModel - the buttonSelectedModel Array
+             * @param {String} buttonValue - the button value of the button to be removed
              */
             this.removeButtonFromModel = function(buttonSelectedModel, buttonValue) {
                 _.remove(buttonSelectedModel, function(num){
