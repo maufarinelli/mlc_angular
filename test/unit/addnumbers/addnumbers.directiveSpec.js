@@ -54,6 +54,7 @@ define([
                 });
             });
 
+            // only restarting from lenovo
             describe('When you select a number and its has been already selected', function() {
                 beforeEach(function() {
                     element[0].querySelector('button[value="7"]').click();
