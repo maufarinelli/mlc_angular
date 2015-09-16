@@ -106,19 +106,20 @@ define([
                     }
                 }
 
-                // For sure, do the job only if there is a extra number
+                var phraseIndex = $scope.province === 'qc' ? 'Extra' : 'Encore';
+                // Do the job only if there is a extra number
                 if(!$.isEmptyObject($scope.myExtra)) {
                     var iExtraCompare = 0;
                     var iReverseExtraCompare = 0;
                     if($scope.myExtra[0].status === true && $scope.myExtra[6].status === true) {
                         recurNormalMessage();
 
-                        var messageIdx = iExtraCompare;
+                        var messageIdx = iExtraCompare >= 5 ? iExtraCompare : 'X';
                             messageIdx += 'Extra';
 
                         if(messageIdx !== '1Extra') {
                             $scope.phraseExtra = {
-                                index: 'Extra',
+                                index: phraseIndex,
                                 phrase: translateApp.i18n.i18nTranslated[$scope.sort + '_phrases'][messageIdx]
                             };
                         }
@@ -126,26 +127,29 @@ define([
                     else if($scope.myExtra[6].status === true) {
                         recurInverseMessage();
 
-                        var messageInverseIdx = iReverseExtraCompare;
+                        var messageInverseIdx = iReverseExtraCompare >= 5 ? iReverseExtraCompare : 'X';
                             messageInverseIdx += 'ExtraI';
 
                         $scope.phraseExtra = {
-                            index: 'Extra',
+                            index: phraseIndex,
                             phrase: translateApp.i18n.i18nTranslated[$scope.sort + '_phrases'][messageInverseIdx]
                         };
                     }
                     else if($scope.myExtra[0].status === true) {
                         recurNormalMessage();
 
-                        var messageNormalIdx = iExtraCompare;
+                        var messageNormalIdx = iExtraCompare >= 5 ? iExtraCompare : 'X';
                             messageNormalIdx += 'Extra';
 
                         if(messageNormalIdx !== '1Extra') {
                             $scope.phraseExtra = {
-                                index: 'Extra',
+                                index: phraseIndex,
                                 phrase: translateApp.i18n.i18nTranslated[$scope.sort + '_phrases'][messageNormalIdx]
                             };
                         }
+                    }
+                    else {
+                        $scope.phraseExtra = {};
                     }
                 }
             }

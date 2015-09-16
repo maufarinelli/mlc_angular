@@ -11,6 +11,7 @@ define([
                 restrict: 'EA',
                 transclude: true,
                 scope: {
+                    province: '@',
                     buttonAdd: '=',
                     buttonSave: '@',
                     errorMessage: '@',
@@ -26,6 +27,10 @@ define([
                      */
                     $scope.toggleInputExtra = function() {
                         $scope.buttonAdd = translateApp.i18n.i18nTranslated.button_add_extra;
+                        if($scope.province === 'on') {
+                            $scope.buttonAdd = translateApp.i18n.i18nTranslated.button_add_encore;
+                        }
+                        
                         if(!$scope.isInputExtraActivated) {
                             $scope.buttonAdd = translateApp.i18n.i18nTranslated.button_hide_field;
                         }

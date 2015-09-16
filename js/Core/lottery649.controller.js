@@ -16,9 +16,6 @@ define([
             // Title of this lottery
             $scope.sortTitle = 'Lotto 649';
 
-            // the province of the lottery. TODO: if it is the first time, user should choose a province on the screen, not put qc as default
-            $scope.province = localStorage['province_' + $scope.sort] ? localStorage['province_' + $scope.sort] : 'qc';
-
             //An array of integers. The format of lastDraw: [6, 26, 41, 42, 47, 48],
             $scope.lastDraw = localStorage['lastDraw_' + $scope.sort] ? angular.fromJson(localStorage['lastDraw_' + $scope.sort]) : [];
 
@@ -30,9 +27,6 @@ define([
 
             // Last draw's date in a yyyy-mm-dd format
             $scope.shortdateLastDraw = localStorage['shortdateLastDraw_' + $scope.sort] ? localStorage['shortdateLastDraw_' + $scope.sort] : '';
-
-            // Extra of last draw in a 0000000 format
-            $scope.extraLastDraw = localStorage['extraLastDraw_' + $scope.sort] ? localStorage['extraLastDraw_' + $scope.sort] : '';
 
             // Guaranteed prize of last draw in a 00000000-00 format
             $scope.guaranteedLastDraw = localStorage['guaranteedLastDraw_' + $scope.sort] ? localStorage['guaranteedLastDraw_' + $scope.sort] : '';
@@ -48,19 +42,6 @@ define([
              { n: 42, status: true }
              ]*/
             $scope.myNumbers = localStorage['myNumbers_' + $scope.sort] ? angular.fromJson(localStorage['myNumbers_' + $scope.sort]) : [];
-
-            /* An array of objects
-             This is the format
-             [
-             { n: 1, status: false },
-             { n: 2, status: false },
-             { n: 3, status: false },
-             { n: 4, status: true },
-             { n: 5, status: true },
-             { n: 6, status: true },
-             { n: 7, status: true }
-             ]*/
-            $scope.myExtra = localStorage['myExtra_' + $scope.sort] ? angular.fromJson(localStorage['myExtra_' + $scope.sort]) : {};
 
             // The Guaranteed Prize in the format { n: '00000000-00', status: false }
             $scope.myGuaranteedNumber = localStorage['myGuaranteedNumber_' + $scope.sort] ? angular.fromJson(localStorage['myGuaranteedNumber_' + $scope.sort]) : {};
@@ -105,14 +86,6 @@ define([
                 $scope.myGuaranteedNumber = myGuaranteed;
                 localStorage['myGuaranteedNumber_' + sort] = angular.toJson($scope.myGuaranteedNumber);
             };
-
-            /**
-             * Initializes the app
-             */
-            var init = function() {
-                $scope.getLastDraw();
-            };
-            init();
         }]);
     }
 );

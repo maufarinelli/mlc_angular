@@ -5,19 +5,19 @@ define([
         mlcApp,
         Core649Controller
         ) {
-        return mlcApp.controller('Quebec49Controller', ['$scope', '$rootScope', '$controller', function($scope, $rootScope, $controller) {
+        return mlcApp.controller('Ontario49Controller', ['$scope', '$rootScope', '$controller', function($scope, $rootScope, $controller) {
 
             // Extending Core649 Controller
             $.extend(this, $controller('Core649Controller', {$scope: $scope}));
 
             // Which lotto
-            $scope.sort = 'quebec49';
+            $scope.sort = 'ontario49';
 
             // Title of this lottery
-            $scope.sortTitle = 'Québec 49';
+            $scope.sortTitle = 'Ontario 49';
 
             // the province of the lottery.
-            $scope.province = 'qc';
+            $scope.province = 'on';
 
             //An array of integers. The format of lastDraw: [6, 26, 41, 42, 47, 48],
             $scope.lastDraw = localStorage['lastDraw_' + $scope.sort] ? angular.fromJson(localStorage['lastDraw_' + $scope.sort]) : [];

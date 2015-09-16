@@ -13,9 +13,16 @@ define([
             $scope.isExtraValid = true;
 
             // I18n texts for some UI items
-            $scope.buttonAddExtra = translateApp.i18n.i18nTranslated.button_add_extra;
             $scope.errorMessageExtra = translateApp.i18n.i18nTranslated.error_message_extra;
             $scope.buttonSaveExtra = translateApp.i18n.i18nTranslated.button_save;
+
+            function setButtonAdd() {
+                $scope.buttonAddExtra = translateApp.i18n.i18nTranslated.button_add_extra;
+                if($scope.province === 'on') {
+                    $scope.buttonAddExtra = translateApp.i18n.i18nTranslated.button_add_encore;
+                }
+            }
+            setButtonAdd();
 
             // The Extra collected from the input entry
             $scope.rawMyExtra = '';
@@ -37,7 +44,7 @@ define([
                         $scope._actionAddNewExtra();
                     }
                     $scope.isInputExtraActivated = false;
-                    $scope.buttonAddExtra = translateApp.i18n.i18nTranslated.button_add_extra;
+                    setButtonAdd();
                 }
                 else {
                     $scope.isExtraValid = false;

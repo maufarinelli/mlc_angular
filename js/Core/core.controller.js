@@ -140,38 +140,6 @@ define([
                     success: function(data) {
                         var decoded = angular.fromJson(data);
 
-                        // Mocking the response until fix server side
-                        decoded = {
-                            "lotto649":{
-                                "Date": "Wednesday, Dec 10 2014",
-                                "Shortdate": "2014-12-10",
-                                "Bonus": "02",
-                                "Guaranteed": "60606060-45",
-                                "Extra": "1234567",
-                                "Encore":"0080185",
-                                "Number0": "01",
-                                "Number1": "10",
-                                "Number2": "13",
-                                "Number3": "25",
-                                "Number4": "26",
-                                "Number5": "45"
-                            },
-                            "quebec49":{
-                                "Date": "Wednesday, Dec 10 2014",
-                                "Shortdate": "2014-12-10",
-                                "Bonus": "02",
-                                "Guaranteed": null,
-                                "Extra": "1234567",
-                                "Encore":"0080185",
-                                "Number0": "01",
-                                "Number1": "10",
-                                "Number2": "13",
-                                "Number3": "25",
-                                "Number4": "26",
-                                "Number5": "45"
-                            }
-                        };
-
                         var sorted = decoded[sort];
 
                         // Pushing all 6 numbers inside lastdraw array
@@ -187,13 +155,21 @@ define([
                             $scope.dateLastDraw = sorted.Date;
                             $scope.shortdateLastDraw = sorted.Shortdate;
                             $scope.bonusLastDraw = sorted.Bonus;
-                            $scope.extraLastDraw = sorted.Extra.slice(0, 7);
 
                             localStorage['lastDraw_' + sort] = angular.toJson($scope.lastDraw);
                             localStorage['bonusLastDraw_' + sort] = $scope.bonusLastDraw;
                             localStorage['shortdateLastDraw_' + sort] = $scope.shortdateLastDraw;
                             localStorage['dateLastDraw_' + sort] = $scope.dateLastDraw;
-                            localStorage['extraLastDraw_'+ sort] = $scope.extraLastDraw;
+
+                            if(sorted.Extra) {
+                                $scope.extraLastDraw = sorted.Extra.slice(0, 7);
+                                localStorage['extraLastDraw_'+ sort] = $scope.extraLastDraw;
+                            }
+
+                            if(sorted.Encore) {
+                                $scope.encoreLastDraw =  sorted.Encore.slice(0, 7);
+                                localStorage['encoreLastDraw_'+ sort] = $scope.encoreLastDraw;
+                            }
 
                             // only if it has Guaranteed prize number
                             if(sorted.Guaranteed) {
@@ -270,8 +246,9 @@ define([
              **/
             $scope.compareExtra = function() {
                 var sort = $scope.sort,
+                    province = $scope.province,
                     myExtra = $scope.myExtra,
-                    aExtraLastDraw = $scope.extraLastDraw.split('');
+                    aExtraLastDraw = $scope.province === 'on' ? $scope.encoreLastDraw.split('') : $scope.extraLastDraw.split('');
 
                 // Comparing with aExtraLastDraw
                 for(var i = 0; i < aExtraLastDraw.length; i++) {
@@ -331,11 +308,23 @@ define([
                 recurInverseEvaluate();
                 recurNormalEvaluate();
 
-                /**
-                 * Comparing both arrays. The one that has less values, it means we have matched more numbers in another sense.
-                 * Ex: aNormal has 4 values and aInverse has 2. So as the prize is better for 4 numbers matched, we set a false the numbers of the other sense.
-                 * Note: if we have equal length for both array, we can have 3 = 3, 0 = 0 or the full number 7 = 7. In those cases we keep true of those numbers
-                 **/
+                if(province === 'qc') {
+                    $scope.compareExtraQC(myExtra, aNormal, aInverse);
+                }
+                else if(province === 'on') {
+
+                }
+
+                $scope.myExtra = myExtra;
+                localStorage['myExtra_' + sort] = JSON.stringify($scope.myExtra);
+            };
+
+            /**
+             * Comparing both arrays. The one that has less values, it means we have matched more numbers in another sense.
+             * Ex: aNormal has 4 values and aInverse has 2. So as the prize is better for 4 numbers matched, we set a false the numbers of the other sense.
+             * Note: if we have equal length for both array, we can have 3 = 3, 0 = 0 or the full number 7 = 7. In those cases we keep true of those numbers
+             **/
+            $scope.compareExtraQC = function(myExtra, aNormal, aInverse) {
                 if(aNormal.length > aInverse.length) {
                     for (var j = 0; j < aInverse.length; j++) {
                         myExtra[aInverse[j]].status = false;
@@ -356,9 +345,6 @@ define([
                         myExtra[1].status = false;
                     }
                 }
-
-                $scope.myExtra = myExtra;
-                localStorage['myExtra_' + sort] = JSON.stringify($scope.myExtra);
             };
         }]);
     }
