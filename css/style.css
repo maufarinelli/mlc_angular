@@ -272,6 +272,14 @@ h2 {
     content: "bonus: ";
 }
 
+.last-draw-lottery-type {
+    display: inline-block;
+    color: #ffdd00;
+    background-color: #2d2d2d;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
 /* My Numbers section
 -------------------------------- */
 .my-numbers h4 {

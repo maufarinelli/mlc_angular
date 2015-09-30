@@ -13,8 +13,9 @@ require.config({
         jQuery: 'external/jquery-1.10.2.min',
         lodash: 'external/lodash',
         general: 'general',
-        angular: '../bower_components/angular/angular',
+        angular: 'external/angular.min',
         angularRoute: 'external/angular-route.min',
+        ionic: '../lib/ionic/js/ionic.bundle',
         mlcApp: 'mlc.app',
 
         'translation': 'translation',
@@ -44,6 +45,7 @@ require.config({
                 'jQuery',
                 'angular',
                 'angularRoute',
+                'ionic',
                 'translation', 
                 'general'
             ],
